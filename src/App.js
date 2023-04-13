@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [numero, setNumero] = useState('')
+
+  function cambioNumero(event) {
+    const entrada = event.target.value;
+    let cant = 0;
+    for (let x = 0; x < entrada.length; x++)
+      if (entrada[x] === '0' || entrada[x] === '1')
+        cant++;
+    if (cant === entrada.length)
+      setNumero(entrada)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>Ingrese un número binario:
+        <input type="text" value={numero} onChange={cambioNumero} />
+      </p>
     </div>
   );
 }
